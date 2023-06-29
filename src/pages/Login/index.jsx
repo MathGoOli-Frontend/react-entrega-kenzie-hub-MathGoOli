@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form"
 import logo from "../../assets/LogoKenzieHub.svg"
-import { Link, json } from "react-router-dom"
 import { Input, PasswordInput } from "../../Fragments/Form/Input"
 import { formLogin } from "./loguinSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { api } from "../../Api/ApiAxios"
-import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+
+import { UserContext } from '../../providers/UserContext'
+
+import { Loading } from "../../Fragments/Loading"
 
 import { StyledMain, StyledSection, StyledLink, StyledHeader } from "./style"
 
@@ -13,20 +15,12 @@ export const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(formLogin)
     })
-    const navigate = useNavigate()
+    const { userLoguinSubmit, isLoading } = useContext(UserContext)
 
-    const submit = async (formData) => {
-        try {
-            const { data } = await api.post("/sessions", formData)
-            console.log(data)
-            localStorage.setItem("@kenzieHubToken", JSON.stringify(data.token))
-            localStorage.setItem("@kenzieHubUserID", JSON.stringify(data.user))
-
-            navigate("/home")
-        } catch (error) {
-            console.log(error)
-        }
-
+    if(isLoading){
+        return(
+            <Loading/>
+        )
     }
 
     return (
@@ -41,7 +35,7 @@ export const Login = () => {
 
                 <h2>Login</h2>
 
-                <form onSubmit={handleSubmit(submit)}>
+                <form onSubmit={handleSubmit(userLoguinSubmit)}>
 
                     <Input
                         type="email"
@@ -63,7 +57,7 @@ export const Login = () => {
 
                 </form>
 
-                <p>Ainda não possui conta?</p>
+                <p className="text-style-headline">Ainda não possui conta?</p>
                 <StyledLink to={"/register"}>Cadastre-se</StyledLink>
             </StyledSection>
         </StyledMain>

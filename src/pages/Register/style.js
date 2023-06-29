@@ -3,13 +3,18 @@ import { Link } from "react-router-dom"
 
 export const StyledHeader= styled.header`
     height: 20vh;
+    width: 96%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     img{
         width: 24.4rem;
     }
+    @media (min-width: 600px) {
+        width: clamp(400px, 20vw, 100%);
+    }
+
 `
 
 export const StyledMain = styled.main`
@@ -30,13 +35,15 @@ export const StyledSection = styled.section`
 
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
     align-items: center;
 
     h2{
         font-size: 1.8rem;
     }
-    
+    p{
+        color: var(--color-grey-1)
+    }
     form{
         width: 100%;
         
@@ -52,11 +59,11 @@ export const StyledSection = styled.section`
 `
 
 export const StyledLink = styled(Link)`
-    width: 100%;
-    height: 4.8rem;
+    width: 6.8rem;
+    height: 4rem;
     text-decoration: none;
     color: var(--color-grey-0);
-    background-color: var(--color-grey-1);
+    background-color: var(--color-grey-3);
     border-radius: var(--radius);
     font-size: 1.6rem;
     display: flex;
@@ -68,4 +75,3 @@ export const StyledLink = styled(Link)`
     }
 
 `
-

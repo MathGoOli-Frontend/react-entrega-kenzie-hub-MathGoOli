@@ -54,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 1;
         background-color: var(--color-grey-4);
         color: var(--color-grey-0)
+
     }
     ol, ul {
         list-style: none;
@@ -66,18 +67,31 @@ export const GlobalStyle = createGlobalStyle`
         content: '';
         content: none;
     }
+
+    label{
+        font-size: 1.6rem;
+    }
     table {
         border-collapse: collapse;
         border-spacing: 0;
     }
 
+    input::placeholder{
+        color: var(--color-grey-0);
+    }
+    input {
+        color: var(--color-grey-0);
+    }
+    label{
+        font-size: 1.2rem;
+    }
     button{
         width: 100%;
         height: 4.8rem;
         cursor: pointer;
         background-color: var(--color-color-primary-50);
         color: var(--color-grey-0);
-
+        font-size: 1.6rem;
         border: none;
         border-radius: var(--radius)
     }
@@ -139,4 +153,5 @@ export const GlobalStyle = createGlobalStyle`
 	    text-decoration: none;
 	    text-transform: none;
     }
+
 `

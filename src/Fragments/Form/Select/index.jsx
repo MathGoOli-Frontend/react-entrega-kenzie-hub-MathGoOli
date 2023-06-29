@@ -1,9 +1,10 @@
 import { forwardRef } from "react"
 
+import { StyledDiv } from './style'
 
 export const Select = forwardRef(({children, label, id, placeholder, type, ...rest}, ref) => {
     return (
-       <div>
+       <StyledDiv>
           {label ? <label htmlFor={id}>{label}</label> : null}
             <select
              id={id} 
@@ -11,6 +12,6 @@ export const Select = forwardRef(({children, label, id, placeholder, type, ...re
              ref={ref}
              {...rest}
             > {children}</select>
-       </div>
+       </StyledDiv>
     )
  });
